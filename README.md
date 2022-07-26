@@ -4,7 +4,7 @@
 
 This is base code for testing [packagecloud-github-action](https://github.com/computology/packagecloud-github-action)
 The github action merely pushes a package to packagecloud.io.
-The main file is [.github/workflows/upload.yml] (https://github.com/nethsix/pc_push_test/blob/master/.github/workflows/upload.yml)
+The main file is [.github/workflows/upload.yml](https://github.com/computology/python-github-action-example/blob/master/.github/workflows/upload.yml)
 The `upload.yml` workflow:
 
 * Build a python package from source code in `packagecloud-test` directory, which is from [packagecloud-test-package](https://github.com/computology/python-test-packages)
