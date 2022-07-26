@@ -1,0 +1,28 @@
+name: dev-ci
+on: [push]
+jobs:
+  upload:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-python@v4
+        with: 
+          python-version: '3.7'
+          cache: 'pip'
+      - name: Install pip dependencies
+        run: |
+##### MODIFY: Uncomment if you have other repos holding your dependencies
+####          export PIP_EXTRA_INDEX_URL=https://${{ secrets.packagecloud_token }}:@packagecloud.io/test_user/test_repo/pypi/simple
+          pip install -r requirements.txt
+      - name: build python package
+        run: python setup.py sdist
+      - name: push package to packagecloud.io
+        uses: computology/packagecloud-github-action@v0.6
+        with:
+##### MODIFY: Change to packagecloud username, reponame, distro type
+#####         To understand the available distro type, see <https://www.rubydoc.info/gems/package_cloud/#pushing-a-package>
+          PACKAGE-NAME: dist/*.tar.gz
+          PACKAGECLOUD-USERNAME: test_user
+          PACKAGECLOUD-REPONAME: test_repo
+          PACKAGECLOUD-DISTRO: python
+          PACKAGECLOUD-TOKEN: ${{ secrets.packagecloud_token }}
