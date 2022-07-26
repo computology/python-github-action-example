@@ -12,7 +12,7 @@ jobs:
       - name: Install pip dependencies
         run: |
 ##### MODIFY: Uncomment if you have other repos holding your dependencies
-####          export PIP_EXTRA_INDEX_URL=https://${{ secrets.packagecloud_token }}:@packagecloud.io/test_user/test_repo/pypi/simple
+          export PIP_EXTRA_INDEX_URL=https://${{ secrets.packagecloud_token }}:@packagecloud.io/test_user/test_repo/pypi/simple
           pip install -r requirements.txt
       - name: build python package
         run: python setup.py sdist
